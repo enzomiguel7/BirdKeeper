@@ -54,8 +54,6 @@ class Bird
     }
 }
 
-//adicionar classe pigeon e ostrich, pigeon bota ovos de cor white e um tamanho entr 1 e 3 cm
-// ostrich bota speckled e um tamanho entre 12 e 13 cm
 
 class Pigeon : Bird
 {
