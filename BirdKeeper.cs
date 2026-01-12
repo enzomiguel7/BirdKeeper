@@ -44,6 +44,14 @@ class Egg
 
 }
 
+class BrokenEgg : Egg
+{
+  public BrokenEgg(double size, string color, string eggemoji) : base (size, color, eggemoji)
+  {
+    Console.WriteLine("A bird laid a broken egg");
+  }
+}
+
 class Bird
 {
     public static Random randomizer = new Random();
@@ -61,10 +69,14 @@ class Pigeon : Bird
     {
       Egg[] eggs = new Egg[numberOfEggs]; 
       for (int l = 0; l < numberOfEggs; l++)
-      {
-        eggs[l] = new Egg(randomizer.NextDouble() * 2, "white","🐣");
-      }
-      return eggs;
+         {
+           if (randomizer.Next(4) == 0)
+              {
+                eggs[l] = new BrokenEgg(Bird.randomizer.NextDouble() * 2, "white", "🍳");
+              } else
+                eggs[l] = new Egg(Bird.randomizer.NextDouble() * 2, "white","🐣");
+         }
+         return eggs;
     }
 }
 
