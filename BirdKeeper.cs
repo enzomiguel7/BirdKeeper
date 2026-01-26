@@ -9,7 +9,7 @@ class Program
          char key = Char.ToUpper(Console.ReadKey().KeyChar);
          if (key == 'P') {bird = new Pigeon();}
          else if (key == 'O') {bird = new Ostrich();}
-         else if (key == 'S') {bird = new Swallow();}
+         else if (key == 'S') {bird =new Swallow();}
          else return;
          
          Console.WriteLine("\nHow many eggs should it lay?");
@@ -46,20 +46,16 @@ class Egg
 
 class BrokenEgg : Egg
 {
-  public BrokenEgg(double size, string color, string eggemoji) : base (size, color, eggemoji)
+  public BrokenEgg(string color, string eggemoji) : base ($"broken{color}", eggemoji)
   {
     Console.WriteLine("A bird laid a broken egg");
   }
 }
 
-class Bird
+abstract class Bird
 {
-    public static Random randomizer = new Random();
-    public virtual Egg[] LayEggs(int numberOfEggs)
-    {
-        Console.Error.WriteLine("Bird.Layeggs should never get called");
-        return new Egg[0];
-    }
+    protected static Random randomizer = new Random();
+    public abstract Egg[] LayEggs(int numberOfEggs); 
 }
 
 
@@ -72,7 +68,7 @@ class Pigeon : Bird
          {
            if (randomizer.Next(4) == 0)
               {
-                eggs[l] = new BrokenEgg(Bird.randomizer.NextDouble() * 2, "white", "🍳");
+                eggs[l] = new BrokenEgg("white", "🍳");
               } else
                 eggs[l] = new Egg(Bird.randomizer.NextDouble() * 2, "white","🐣");
          }
